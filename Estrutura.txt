@@ -1,0 +1,60 @@
+public_html/ 
+├── index.html 
+├── login.html 
+├── dashboard.html 
+├── 404.html 
+├── 500.html 
+├── admin/ │ 
+├── index.html 
+│ └── admin_login.html 
+├── css/ 
+│ ├── style.css 
+│ └── admin.css 
+├── js/ 
+│ ├── script.js 
+│ ├── login.js 
+│ ├── dashboard.js 
+│ └── admin.js 
+├── php/ 
+│ ├── config.php 
+│ ├── create_database.php 
+│ ├── create_admin_tables.php 
+│ ├── cadastro.php 
+│ ├── login.php 
+│ ├── logout.php 
+│ ├── get_user_data.php 
+│ ├── atualizar_perfil.php 
+│ ├── get_user_projects.php 
+│ ├── get_user_informations.php 
+│ ├── enviar_contato.php 
+│ ├── admin_auth.php 
+│ ├── admin_login.php 
+│ ├── admin_logout.php 
+│ ├── admin_get_stats.php 
+│ ├── admin_get_recent_activity.php 
+│ ├── admin_get_clients.php 
+│ ├── admin_get_projects.php 
+│ ├── admin_get_informations.php 
+│ ├── admin_get_contacts.php 
+│ ├── admin_add_client.php 
+│ ├── admin_update_client.php 
+│ ├── admin_toggle_client_status.php 
+│ ├── admin_add_project.php 
+│ ├── admin_update_project.php 
+│ ├── admin_delete_project.php 
+│ ├── admin_get_project_details.php 
+│ ├── admin_add_information.php 
+│ ├── admin_delete_information.php 
+│ ├── admin_get_information_details.php 
+│ ├── admin_get_contact_details.php 
+│ ├── admin_update_contact_status.php 
+│ ├── admin_delete_contact.php 
+│ ├── admin_get_chart_data.php 
+│ ├── admin_export_clients.php 
+│ ├── admin_export_projects.php 
+│ └── admin_export_contacts.php 
+├── images/ 
+│ ├── intercoop-logo.png 
+│ └── sobre-intercoop.jpg 
+├── uploads/ (criar pasta com permissão 755) 
+└── .htaccess

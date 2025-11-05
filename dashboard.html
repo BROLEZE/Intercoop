@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Intercoop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="logo">
+                <img src="images/intercoop-logo.png" alt="Intercoop Logo">
+                <span>INTERCOOP</span>
+            </div>
+            <div class="user-menu">
+                <span id="userName">Bem-vindo!</span>
+                <a href="php/logout.php" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <nav class="sidebar">
+                <ul>
+                    <li><a href="#" onclick="showSection('perfil')" class="active">
+                        <i class="fas fa-user"></i> Meu Perfil
+                    </a></li>
+                    <li><a href="#" onclick="showSection('projetos')">
+                        <i class="fas fa-project-diagram"></i> Meus Projetos
+                    </a></li>
+                    <li><a href="#" onclick="showSection('informacoes')">
+                        <i class="fas fa-info-circle"></i> Informações
+                    </a></li>
+                </ul>
+            </nav>
+
+            <main class="main-content">
+                <!-- Seção Perfil -->
+                <section id="perfil" class="content-section active">
+                    <h2>Meu Perfil</h2>
+                    <form id="perfilForm" action="php/atualizar_perfil.php" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfilNome">Nome</label>
+                                <input type="text" id="perfilNome" name="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="perfilEmail">Email</label>
+                                <input type="email" id="perfilEmail" name="email" required readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfilEmpresa">Empresa</label>
+                                <input type="text" id="perfilEmpresa" name="empresa">
+                            </div>
+                            <div class="form-group">
+                                <label for="perfilTelefone">Telefone</label>
+                                <input type="tel" id="perfilTelefone" name="telefone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="perfilEndereco">Endereço</label>
+                            <input type="text" id="perfilEndereco" name="endereco">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfilCidade">Cidade</label>
+                                <input type="text" id="perfilCidade" name="cidade">
+                            </div>
+                            <div class="form-group">
+                                <label for="perfilEstado">Estado</label>
+                                <input type="text" id="perfilEstado" name="estado">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="perfilPais">País</label>
+                                <input type="text" id="perfilPais" name="pais">
+                            </div>
+                            <div class="form-group">
+                                <label for="perfilCep">CEP</label>
+                                <input type="text" id="perfilCep" name="cep">
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-button">Atualizar Perfil</button>
+                    </form>
+                </section>
+
+                <!-- Seção Projetos -->
+                <section id="projetos" class="content-section">
+                    <h2>Meus Projetos</h2>
+                    <div class="projetos-list" id="projetosList">
+                        <!-- Projetos serão carregados via JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Seção Informações -->
+                <section id="informacoes" class="content-section">
+                    <h2>Informações</h2>
+                    <div class="informacoes-list" id="informacoesList">
+                        <!-- Informações serão carregadas via JavaScript -->
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

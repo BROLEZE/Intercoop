@@ -1,0 +1,62 @@
+CONFIGURAÇÕES PARA HOSTGATOR:
+
+1. BANCO DE DADOS:
+   - Acesse o cPanel
+   - Vá em "Bancos de Dados MySQL"
+   - Crie um novo banco: intercoop_db
+   - Crie um usuário e associe ao banco
+   - Anote as credenciais para usar no config.php
+
+2. EMAIL:
+   - No cPanel, vá em "Contas de Email"
+   - Crie: contato@intercoop.com.br
+   - Configure SMTP no config.php:
+     * Host: mail.intercoop.com.br
+     * Porta: 587 ou 465 (SSL)
+     * Usuário: contato@intercoop.com.br
+     * Senha: [senha da conta de email]
+
+3. ESTRUTURA DE PASTAS:
+   public_html/
+   ├── index.html
+   ├── login.html
+   ├── dashboard.html
+   ├── css/
+   │   └── style.css
+   ├── js/
+   │   ├── script.js
+   │   ├── login.js
+   │   └── dashboard.js
+   ├── php/
+   │   ├── config.php
+   │   ├── create_database.php
+   │   ├── cadastro.php
+   │   ├── login.php
+   │   ├── logout.php
+   │   ├── get_user_data.php
+   │   ├── atualizar_perfil.php
+   │   ├── get_user_projects.php
+   │   ├── get_user_informations.php
+   │   └── enviar_contato.php
+   ├── images/
+   │   ├── intercoop-logo.png
+   │   ├── sobre-intercoop.jpg
+   │   └── [outras imagens]
+   ├── uploads/ (criar pasta com permissão 755)
+   └── .htaccess
+
+4. APÓS UPLOAD:
+   - Execute: seudominio.com.br/php/create_database.php
+   - Isso criará todas as tabelas necessárias
+   - Delete o arquivo create_database.php por segurança
+
+5. CONFIGURAÇÕES DE SEGURANÇA:
+   - Altere as senhas no config.php
+   - Configure SSL/HTTPS no cPanel
+   - Ative backup automático
+
+6. TESTE:
+   - Acesse o site
+   - Teste o formulário de contato
+   - Teste cadastro e login
+   - Verifique se emails estão sendo enviados

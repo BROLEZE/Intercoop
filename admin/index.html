@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Intercoop</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="../images/intercoop-logo.png" alt="Intercoop Logo">
+                <h3>Admin Panel</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard" onclick="showSection('dashboard')" class="active">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a></li>
+                <li><a href="#clientes" onclick="showSection('clientes')">
+                    <i class="fas fa-users"></i> Clientes
+                </a></li>
+                <li><a href="#projetos" onclick="showSection('projetos')">
+                    <i class="fas fa-project-diagram"></i> Projetos
+                </a></li>
+                <li><a href="#informacoes" onclick="showSection('informacoes')">
+                    <i class="fas fa-info-circle"></i> Informações
+                </a></li>
+                <li><a href="#contatos" onclick="showSection('contatos')">
+                    <i class="fas fa-envelope"></i> Contatos
+                </a></li>
+                <li><a href="#relatorios" onclick="showSection('relatorios')">
+                    <i class="fas fa-chart-bar"></i> Relatórios
+                </a></li>
+                <li><a href="../php/admin_logout.php" class="logout">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1 id="page-title">Dashboard</h1>
+                <div class="admin-user">
+                    <span>Bem-vindo, Admin</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-clientes">0</h3>
+                            <p>Total de Clientes</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-projetos">0</h3>
+                            <p>Projetos Ativos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-contatos">0</h3>
+                            <p>Contatos Recebidos</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="novos-mes">0</h3>
+                            <p>Novos este Mês</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Cadastros por Mês</h3>
+                        <canvas id="cadastrosChart"></canvas>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Atividade Recente</h3>
+                        <div id="recent-activities">
+                            <!-- Atividades serão carregadas via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Clientes Section -->
+            <section id="clientes" class="admin-section">
+                <div class="section-header">
+                    <h2>Gerenciar Clientes</h2>
+                    <button class="btn btn-primary" onclick="showAddClientModal()">
+                        <i class="fas fa-plus"></i> Novo Cliente
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Empresa</th>
+                                <th>Telefone</th>
+                                <th>Data Cadastro</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientes-table-body">
+                            <!-- Dados serão carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Projetos Section -->
+            <section id="projetos" class="admin-section">
+                <div class="section-header">
+                    <h2>Gerenciar Projetos</h2>
+                    <button class="btn btn-primary" onclick="showAddProjectModal()">
+                        <i class="fas fa-plus"></i> Novo Projeto
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Cliente</th>
+                                <th>Status</th>
+                                <th>Data Criação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projetos-table-body">
+                            <!-- Dados serão carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Informações Section -->
+            <section id="informacoes" class="admin-section">
+                <div class="section-header">
+                    <h2>Gerenciar Informações</h2>
+                    <button class="btn btn-primary" onclick="showAddInfoModal()">
+                        <i class="fas fa-plus"></i> Nova Informação
+                    </button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Informação</th>
+                                <th>Data</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="informacoes-table-body">
+                            <!-- Dados serão carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Contatos Section -->
+            <section id="contatos" class="admin-section">
+                <div class="section-header">
+                    <h2>Contatos Recebidos</h2>
+                    <div class="filter-buttons">
+                        <button class="btn btn-outline" onclick="filterContacts('todos')">Todos</button>
+                        <button class="btn btn-outline" onclick="filterContacts('novo')">Novos</button>
+                        <button class="btn btn-outline" onclick="filterContacts('lido')">Lidos</button>
+                        <button class="btn btn-outline" onclick="filterContacts('respondido')">Respondidos</button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Email</th>
+                                <th>Telefone</th>
+                                <th>Assunto</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contatos-table-body">
+                            <!-- Dados serão carregados via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Relatórios Section -->
+            <section id="relatorios" class="admin-section">
+                <div class="section-header">
+                    <h2>Relatórios</h2>
+                </div>
+                
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h3>Relatório de Clientes</h3>
+                        <p>Exportar lista completa de clientes</p>
+                        <button class="btn btn-primary" onclick="exportClients()">
+                            <i class="fas fa-download"></i> Exportar CSV
+                        </button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Relatório de Projetos</h3>
+                        <p>Exportar lista de projetos por período</p>
+                        <button class="btn btn-primary" onclick="exportProjects()">
+                            <i class="fas fa-download"></i> Exportar CSV
+                        </button>
+                    </div>
+                    <div class="report-card">
+                        <h3>Relatório de Contatos</h3>
+                        <p>Exportar contatos recebidos</p>
+                        <button class="btn btn-primary" onclick="exportContacts()">
+                            <i class="fas fa-download"></i> Exportar CSV
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Modal Adicionar Cliente -->
+    <div id="addClientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adicionar Novo Cliente</h3>
+                <span class="close" onclick="closeModal('addClientModal')">&times;</span>
+            </div>
+            <form id="addClientForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientNome">Nome *</label>
+                        <input type="text" id="clientNome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="clientEmail">Email *</label>
+                        <input type="email" id="clientEmail" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientEmpresa">Empresa</label>
+                        <input type="text" id="clientEmpresa" name="empresa">
+                    </div>
+                    <div class="form-group">
+                        <label for="clientTelefone">Telefone</label>
+                        <input type="tel" id="clientTelefone" name="telefone">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientSenha">Senha Temporária *</label>
+                    <input type="password" id="clientSenha" name="senha" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addClientModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar Projeto -->
+    <div id="addProjectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adicionar Novo Projeto</h3>
+                <span class="close" onclick="closeModal('addProjectModal')">&times;</span>
+            </div>
+            <form id="addProjectForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="projectCliente">Cliente *</label>
+                        <select id="projectCliente" name="email" required>
+                            <option value="">Selecione um cliente</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectCodigo">Código do Projeto *</label>
+                        <input type="text" id="projectCodigo" name="codigo_projeto" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="projectNome">Nome do Projeto *</label>
+                    <input type="text" id="projectNome" name="nome_projeto" required>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescricao">Descrição</label>
+                    <textarea id="projectDescricao" name="descricao_projeto" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="projectAnexos">Anexos</label>
+                    <input type="text" id="projectAnexos" name="anexos" placeholder="URLs ou nomes dos arquivos">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addProjectModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Projeto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Adicionar Informação -->
+    <div id="addInfoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adicionar Nova Informação</h3>
+                <span class="close" onclick="closeModal('addInfoModal')">&times;</span>
+            </div>
+            <form id="addInfoForm">
+                <div class="form-group">
+                    <label for="infoCliente">Cliente *</label>
+                    <select id="infoCliente" name="email" required>
+                        <option value="">Selecione um cliente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="infoTexto">Informação *</label>
+                    <textarea id="infoTexto" name="informacoes" rows="6" required></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('addInfoModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Informação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Ver Contato -->
+    <div id="viewContactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Detalhes do Contato</h3>
+                <span class="close" onclick="closeModal('viewContactModal')">&times;</span>
+            </div>
+            <div id="contactDetails">
+                <!-- Detalhes serão carregados via JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('viewContactModal')">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="markAsRead()">Marcar como Lido</button>
+                <button type="button" class="btn btn-success" onclick="markAsAnswered()">Marcar como Respondido</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

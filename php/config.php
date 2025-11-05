@@ -1,21 +1,21 @@
 <?php
 // Configurações do banco de dados
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'inter379_intercoop_db');
-define('DB_USER', 'inter379_intercoop_db');
-define('DB_PASS', 'intercoop_dbRuaMaua941!Admin');
+define('DB_HOST', '');
+define('DB_NAME', '');
+define('DB_USER', '');
+define('DB_PASS', '');
 
 // Configurações de email
-define('SMTP_HOST', 'mail.intercoop.com.br');
-define('SMTP_PORT', 587);
-define('SMTP_USER', 'contato@intercoop.com.br');
-define('SMTP_PASS', 'contatoRuaMaua941!Admin');
-define('SMTP_FROM', 'contato@intercoop.com.br');
-define('SMTP_FROM_NAME', 'Intercoop');
+define('SMTP_HOST', '');
+define('SMTP_PORT', 'numeroaqui');
+define('SMTP_USER', '');
+define('SMTP_PASS', '');
+define('SMTP_FROM', '');
+define('SMTP_FROM_NAME', 'nomeaqui');
 
 // Configurações gerais
-define('SITE_URL', 'https://intercoop.com.br');
-define('UPLOAD_PATH', '../uploads/');
+define('SITE_URL', 'https://site.com.br');
+define('UPLOAD_PATH', 'pasta');
 
 // Iniciar sessão
 session_start();
